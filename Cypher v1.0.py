@@ -4,7 +4,7 @@ import face_recognition
 from datetime import datetime
 import os
 
-path = 'Images'
+path = 'Images'  # "Images is the folder name change this if you created the folder in your directory  with  some other name"
 images = []
 classNames = []
 
@@ -44,11 +44,10 @@ def markAttendence(name):
             f.writelines(f'\n{name}, {datestring}')
 
 
-
 encodeListKnownFaces = findEncoding(images)
 print('Encoding Done')
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0) # <-- '0' is for in built camera or webcam of laptops, use '1' if you are using an external webcam with OBS or any other software
 
 while True:
     success, img = cap.read()
