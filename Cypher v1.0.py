@@ -47,7 +47,7 @@ def markAttendence(name):
 encodeListKnownFaces = findEncoding(images)
 print('Encoding Done')
 
-cap = cv2.VideoCapture(0) # <-- '0' is for in built camera or webcam of laptops, use '1' if you are using an external webcam with OBS or any other software
+cap = cv2.VideoCapture(0) # <-- '0' is for in default camera or webcam of laptops, use '1' if you are using an external webcam with OBS or any other software
 
 while True:
     success, img = cap.read()
