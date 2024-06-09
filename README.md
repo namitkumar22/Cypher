@@ -2,7 +2,7 @@
 <hr>
 <b>step 1</b> : Add a folder with name "Images" in the directory in which you are running Cypher<br>
 <b>step 2</b> : Add the images of the student in the same folder "Images" you created in step 1<br>
-<b>step 3</b> : Run "Cypher v1.0.py"<br>
+<b>step 3</b> : Run "Cypher_v1.0.py" or "Cypher_v2.0.py"<br>
 <b>step 4</b> : Done
 <hr>
 
