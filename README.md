@@ -7,7 +7,7 @@ Cypher is a Automated Attendance System for School, Colleges and Universities an
 It uses validation for recognizing faces like The attendance will only mark if a student face will detect for more than 30 minutes means if a student attended class for more than 30 minutes then only it mark the attendance, it solves various issues like marking attendance of a student by his/her image because its not possible to hold a image in front of camera for 30 minutes
 
 ## Features in version 3
-<hr>
+
 <b>1</b> [Major Update] Added user friendly modern GUI<br>
 <b>2</b> Facility to Check Attendance of any student<br>
 <b>3</b> Facility to update Attendance of any student<br>
@@ -15,10 +15,9 @@ It uses validation for recognizing faces like The attendance will only mark if a
 <b>5</b> Increased capability to detect face upto 8 meters<br>
 <b>6</b> Light and Dark Themes added<br>
 <b>7</b> Automatic Starting Time and sleeping time to save resources<br>
-<hr>
 
 ## How to use [Admin]
-<hr>
+
 <b>step 1</b> : Run "registration.py" and Register as admin<br>
 <b>step 1</b> : Set your Scholl or University Timing as per your schedule in the code [you will find comments in the code for changes]<br>
 <b>step 1</b> : Add a folder with name "Images" in the directory in which you are running Cypher<br>
