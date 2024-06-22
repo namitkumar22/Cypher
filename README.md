@@ -35,3 +35,7 @@ I hope you will find this software usefull
 ## Note
 
 Please Ignore the "Add Camera" Button and "camera_info.json", they are currently under development
+
+## Important
+
+It is a high end requirement software. I recomend Running this software through GPU. If you are running this with CPU make sure you have a good CPU of H series in case of Intel and Good Generation in case of AMD
