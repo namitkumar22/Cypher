@@ -32,3 +32,7 @@ It uses validation for recognizing faces like The attendance will only mark if a
 When the student face is in the camera for 30 minutes then it will automatically mark the attendance of the student in the database. You can also change these 30 minutes as per your requirements just find comments in the code and make changes
 
 I hope you will find this software usefull
+
+## Note
+
+Please Ignore the "Add Camera" Button and "camera_info.json", they are currently under development
