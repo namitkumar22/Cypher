@@ -204,13 +204,7 @@ def DefaultCamera():
 
     cap.release()
     cv2.destroyAllWindows()
-
-
-
-
-
-
-         
+  
             
 
 async def timemethod():
@@ -225,7 +219,7 @@ async def timemethod():
         minute = ind_time[3:5]
         seconds = ind_time[6:]
 
-        if str(hour) == '14' and str(minute) == '44':  # This is the automatic start timing set is as per your schedule
+        if str(hour) == '09' and str(minute) == '10':  # This is the automatic start timing, set as per your schedule
             while True:
                 ind_time = datetime.now(timezone("Asia/Kolkata")).strftime('%H:%M:%S')
                 hour = ind_time[:2]
