@@ -62,7 +62,7 @@ def DefaultCamera():
         return encodedlist
 
     def getCurrentPeriod(hour, minute):
-        period_times = {
+        period_times = {                    # These are lecture timings set them as per your Schedule
             1: ((9, 0), (9, 55)),
             2: ((9, 55), (10, 50)),
             3: ((10, 50), (11, 45)),
@@ -97,7 +97,7 @@ def DefaultCamera():
 
         if start_time and end_time:
             duration = datetime.strptime(end_time, '%H:%M:%S') - datetime.strptime(start_time, '%H:%M:%S')
-            if duration.total_seconds() > 5:  # 300 seconds = 5 minutes
+            if duration.total_seconds() > 1800:  # 300 seconds = 5 minutes [Face detection time for making attendace]
                 query = f"SELECT * from AllStudentAttendanceData WHERE ID = ? and date = ? and Period = ?;"
                 cur.execute(query, (StudentID, datestring, period))
                 existing_entry = cur.fetchone()
@@ -109,7 +109,7 @@ def DefaultCamera():
     encodeListKnownFaces = findEncoding(images)
     print('Encoding Done')
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0)        # Put the ip of your camera you using here in place of '0'
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
@@ -132,7 +132,7 @@ def DefaultCamera():
         current_time = datetime.now(timezone("Asia/Kolkata")).strftime('%H:%M:%S')
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img_small = cv2.resize(img_rgb, (0, 0), fx=0.25, fy=0.25)
-        face_locations = face_recognition.face_locations(img_small, model='cnn')  # Use model = 'cnn' for better accuracy
+        face_locations = face_recognition.face_locations(img_small, model='cnn')
         encodings = face_recognition.face_encodings(img_small, face_locations)
 
         for encode_face, face_location in zip(encodings, face_locations):
@@ -225,7 +225,7 @@ async def timemethod():
         minute = ind_time[3:5]
         seconds = ind_time[6:]
 
-        if str(hour) == '14' and str(minute) == '44':
+        if str(hour) == '14' and str(minute) == '44':  # This is the automatic start timing set is as per your schedule
             while True:
                 ind_time = datetime.now(timezone("Asia/Kolkata")).strftime('%H:%M:%S')
                 hour = ind_time[:2]
@@ -242,26 +242,23 @@ def mark_absent_students():
         current_date = datetime.now().strftime('%d:%m:%Y')
         periods = [i for i in range(1, 9)]
 
-        # Get all distinct students
         cur.execute("SELECT DISTINCT ID, Name FROM AllStudentAttendanceData;")
         students = cur.fetchall()
 
         for student in students:
             student_id, student_name = student
 
-            # Get present periods for the student on the current date
+
             cur.execute("SELECT DISTINCT Period FROM AllStudentAttendanceData WHERE ID = ? AND date = ? AND Attendance = 'P';",
                         (student_id, current_date))
             present_periods = [result[0] for result in cur.fetchall()]
 
-            # Compare with all periods
             for period in periods:
                 if period not in present_periods:
-                    # Insert absent record
+
                     cur.execute("INSERT INTO AllStudentAttendanceData (Name, date, time, ID, Attendance, Period) VALUES (?, ?, ?, ?, 'A', ?);",
                                 (student_name, current_date, "17:00:00", student_id, period))
 
-        # Commit changes to the database
         conn.commit()
         conn.close()
 
@@ -330,10 +327,8 @@ def LoginFunction():
         
     if loginresult[1].upper() == 'STUDENT':
         LoginScreen.destroy()
-        # CypherGUIStudent()
-        # CypherGUIStudent().mainloop()
         print("Student")
-        LoginScreen.destroy()  # Destroy the login window upon successful login
+        LoginScreen.destroy()
         
 
 
