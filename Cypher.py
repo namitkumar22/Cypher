@@ -17,7 +17,7 @@ import cv2
 import numpy as np
 import csv
 
-from registration import RegistrationPage, RegisterFunction
+from registration import RegistrationPage
 
 
 customtkinter.set_appearance_mode("dark")
@@ -1290,7 +1290,26 @@ class CypherGUIAdmin(customtkinter.CTk):
         update_btn.pack(fill="x", pady=10)
 
     def AddDataAdmin(self):
-        CTkMessagebox(title="Cypher", message="👷 This feature is under development\nComing Soon!", icon="info", option_1="Ok")
+        try:
+            # Save current state
+            admin_name = loginresult[0]
+            
+            # Destroy current admin window
+            self.destroy()
+            
+            # Open registration page
+            from registration import RegistrationPage
+            reg_app = RegistrationPage()
+            reg_app.run()
+            
+            # Recreate admin window after registration closes
+            admin_gui = CypherGUIAdmin()
+            admin_gui.mainloop()
+        
+        except Exception as e:
+            print(f"Error opening registration: {str(e)}")
+            import traceback
+            traceback.print_exc()
 
     def ExitApp(self):
         exit(0)
